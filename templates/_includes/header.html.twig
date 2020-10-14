@@ -11,7 +11,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      {% if app.user %}
+      {# {% if app.user %}
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
       </li>
@@ -22,21 +22,28 @@
       <li class="nav-item">
         <a class="nav-link" href="/register">Register</a>
       </li>
-      {% endif %}
+      {% endif %} #}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          {% if app.user %}
+            {{ app.user.email }}
+          {% else %}
+            Connectez-vous
+
+          {% endif %}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          {% if app.user %}
+            <a class="dropdown-item" href="/logout">Logout</a>
+          {% else %}
+            <a class="dropdown-item" href="/login">Login</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/register">Register</a>
+          {% endif %}
+          {# <a class="dropdown-item" href="#">Something else here</a> #}
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
