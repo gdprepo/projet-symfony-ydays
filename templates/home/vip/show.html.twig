@@ -153,7 +153,47 @@
 					</div>
 				</div>
 			</div>
+            
 			<div class="pay col-7">
+				<div class="card__side card__side--front-3">
+					<div class="card__title card__title--3">
+						<i class="fas fa-rocket"></i>
+						<h4 class="card__heading">Pro</h4>
+					</div>
+
+					<div class="card__details">
+						<ul>
+							<li>Includes Plus Plan Features</li>
+							<li>High Performance</li>
+							<li>2 Spam Experts</li>
+							<li>Free SSL Certificate</li>
+							<li>Domain Privacy</li>
+							<li>Site Backup - CodeGuard Basic</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="pay2 col-7">
+				<div class="card__side card__side--front-2">
+					<div class="card__title card__title--2">
+						<i class="fas fa-plane"></i>
+						<h4 class="card__heading">Plus</h4>
+					</div>
+
+					<div class="card__details">
+						<ul>
+							<li>Includes Basic Package Features</li>
+							<li>Unlimited Websites</li>
+							<li>Unlimited SSD Storage</li>
+							<li>Unlimited Domains</li>
+							<li>Unlimited Parked Domains</li>
+							<li>Unlimited Sub Domains</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="pay3 col-7">
 				<div class="card__side card__side--front-3">
 					<div class="card__title card__title--3">
 						<i class="fas fa-rocket"></i>
@@ -189,55 +229,68 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 
-    $(function () {
-        $(".pay").hide();
-        $(".back").hide();
-        $(".cardSelect").hide();
+		$(function () {
+$(".pay").hide();
+$(".back").hide();
+$(".cardSelect").hide();
+$(".pay").hide();
+$(".pay2").hide();
+$(".pay3").hide();
 
-        $(".back").click(function () {
-            $(".form1").show();
-            $(".form2").show();
-            $(".form3").show();
+$(".back").click(function () {
+$(".form1").show();
+$(".form2").show();
+$(".form3").show();
 
-            $(".cardSelect").hide();
-            $(".cardVip").show();
+$(".cardSelect").hide();
+$(".cardVip").show();
 
-            $(".pay").hide();
-            $(".back").hide();
+$(".pay").hide();
+$(".pay2").hide();
+$(".pay3").hide();
 
-        });
+$(".back").hide();
 
-        $(".select1").click(function () {
-            $(".form2").hide();
-            $(".form3").hide();
-            $(".pay").show();
-            $(".back").show();
+});
 
-            $(".cardSelect").show();
-            $(".cardVip").hide();
+$(".select1").click(function () {
+$(".form2").hide();
+$(".form3").hide();
+$(".pay").show();
+$(".pay2").hide();
+$(".pay3").hide();
+$(".back").show();
 
-        });
+$(".cardSelect").show();
+$(".cardVip").hide();
 
-        $(".select2").click(function () {
-            $(".form1").hide();
-            $(".form3").hide();
-            $(".pay").show();
-            $(".back").show();
+});
 
-            $(".cardSelect").show();
-            $(".cardVip").hide();
-        });
+$(".select2").click(function () {
+$(".form1").hide();
+$(".form3").hide();
+$(".pay3").hide();
+$(".pay").hide();
 
-        $(".select3").click(function () {
-            $(".form1").hide();
-            $(".form2").hide();
-            $(".pay").show();
-            $(".back").show();
+$(".pay2").show();
+$(".back").show();
 
-            $(".cardSelect").show();
-            $(".cardVip").hide();
-        });
-    })
+$(".cardSelect").show();
+$(".cardVip").hide();
+});
+
+$(".select3").click(function () {
+$(".form1").hide();
+$(".form2").hide();
+$(".pay").hide();
+$(".pay2").hide();
+$(".pay3").show();
+$(".back").show();
+
+$(".cardSelect").show();
+$(".cardVip").hide();
+});
+})
 	</script>
 
 
