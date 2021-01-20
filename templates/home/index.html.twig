@@ -15,6 +15,47 @@
 			background: #F5F5F5;
 			padding: 2px 6px;
 		}
+
+		.footerlinks {
+			list-style: none;
+			margin: 10px 5px 5px;
+			padding: 0;
+
+			color: grey;
+			letter-spacing: 3px
+		}
+
+		.footercontact {
+			list-style: none;
+			margin: 10px 0;
+			color: grey;
+			letter-spacing: 1px
+		}
+
+		.footercontact li {
+			margin: 10px 0;
+		}
+
+		footer a {
+			color: grey;
+		}
+
+		footer a:link {
+			color: grey;
+			text-decoration: none;
+		}
+
+		footer a:hover {
+			color: white;
+		}
+
+		html {
+			font-size: 70.5%;
+		}
+
+		body {
+			background-image: linear-gradient(219deg, rgba(246, 246, 246, 0.02) 0%, rgba(246, 246, 246, 0.02) 20%,rgba(225, 225, 225, 0.02) 20%, rgba(225, 225, 225, 0.02) 40%,rgba(136, 136, 136, 0.02) 40%, rgba(136, 136, 136, 0.02) 60%,rgba(216, 216, 216, 0.02) 60%, rgba(216, 216, 216, 0.02) 80%,rgba(35, 35, 35, 0.02) 80%, rgba(35, 35, 35, 0.02) 100%), linear-gradient(299deg, rgba(213, 213, 213, 0.02) 0%, rgba(213, 213, 213, 0.02) 20%, rgba(150, 150, 150, 0.02) 20%, rgba(150, 150, 150, 0.02) 40%, rgba(161, 161, 161, 0.02) 40%, rgba(161, 161, 161, 0.02) 60%, rgba(186, 186, 186, 0.02) 60%, rgba(186, 186, 186, 0.02) 80%, rgba(28, 28, 28, 0.02) 80%, rgba(28, 28, 28, 0.02) 100%), linear-gradient(50deg, rgba(157, 157, 157, 0.02) 0%, rgba(157, 157, 157, 0.02) 16.667%, rgba(147, 147, 147, 0.02) 16.667%, rgba(147, 147, 147, 0.02) 33.334%, rgba(42, 42, 42, 0.02) 33.334%, rgba(42, 42, 42, 0.02) 50.001000000000005%, rgba(214, 214, 214, 0.02) 50.001%, rgba(214, 214, 214, 0.02) 66.668%, rgba(34, 34, 34, 0.02) 66.668%, rgba(34, 34, 34, 0.02) 83.33500000000001%, rgba(211, 211, 211, 0.02) 83.335%, rgba(211, 211, 211, 0.02) 100.002%), linear-gradient(278deg, rgba(79, 79, 79, 0.03) 0%, rgba(79, 79, 79, 0.03) 20%, rgba(217, 217, 217, 0.03) 20%, rgba(217, 217, 217, 0.03) 40%, rgba(5, 5, 5, 0.03) 40%, rgba(5, 5, 5, 0.03) 60%, rgba(200, 200, 200, 0.03) 60%, rgba(200, 200, 200, 0.03) 80%, rgba(125, 125, 125, 0.03) 80%, rgba(125, 125, 125, 0.03) 100%), linear-gradient(274deg, rgba(235, 235, 235, 0.03) 0%, rgba(235, 235, 235, 0.03) 12.5%, rgba(100, 100, 100, 0.03) 12.5%, rgba(100, 100, 100, 0.03) 25%, rgba(44, 44, 44, 0.03) 25%, rgba(44, 44, 44, 0.03) 37.5%, rgba(228, 228, 228, 0.03) 37.5%, rgba(228, 228, 228, 0.03) 50%, rgba(36, 36, 36, 0.03) 50%, rgba(36, 36, 36, 0.03) 62.5%, rgba(72, 72, 72, 0.03) 62.5%, rgba(72, 72, 72, 0.03) 75%, rgba(30, 30, 30, 0.03) 75%, rgba(30, 30, 30, 0.03) 87.5%, rgba(109, 109, 109, 0.03) 87.5%, rgba(109, 109, 109, 0.03) 100%), linear-gradient(90deg, hsl(28, 0%, 14%), hsl(28, 0%, 14%));
+		}
 	</style>
 
 	<div class="example-wrapper">
@@ -43,7 +84,7 @@
 			</a>
 		</div>
 		<div class="center-con">
-			<div class="round">
+			<div style="background-color: black" class="round">
 				<div id="cta">
 					<span class="arrow primera next "></span>
 					<span class="arrow segunda next "></span>
@@ -56,8 +97,8 @@
 		<h2 id="prono" style="text-align: center;">Derniers Pronostics</h2>
 	</div>
 
-	<div style="background-color: white; border-radius: 10px; margin-bottom: 30px" class="container">
-		<div style="padding: 20px; margin-top: 50px">
+	<div style="background-color: white; border-radius: 10px; margin-bottom: 30px; padding: 0px;" class="container">
+		<div style="padding: 0px; margin-top: 50px">
 			<ul class="list-group">
 				<li class="list-group-item list-group-item-action" style="padding: 0">
 					<div style="width: 50% ; top:0; padding: 0; width: 100%;">
@@ -77,14 +118,34 @@
 
 					<h4 style="font-size: 20px; padding: 20px">Equip1 - Equip2</h4>
 					<p style="font-size: 15px; padding: 10px">Notre prono</p>
-					<p style="font-size: 15px; padding: 0 10px; margin-top: -20px"><strong>Equip1</strong></p>
+					<p style="font-size: 15px; padding: 0 10px; margin-top: -20px">
+						<strong>Equip1</strong>
+					</p>
 
 
 				</li>
-				<li class="list-group-item" style="padding: 0">
-					<div style="color:white; top:0; left: 0; background: black; width: 60px; padding: 5px">Type
+				<li class="list-group-item list-group-item-action" style="padding: 0">
+					<div style="width: 50% ; top:0; padding: 0; width: 100%;">
+						<p style="float: right; margin: 0; color:black; right: 0; padding: 5px; margin-right: 15px">
+							Date - Heure - Ligue
+						</p>
+
+						<p style="left: 0; margin: 0; background: black; color:white; width: 60px; padding: 5px">
+							Type
+						</p>
+
+						<div style="width: 50%; top: 0; margin-top: -20px; margin-left: 28%" class="progress">
+							<div placeholder="plpl" class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Indice de confience</div>
+						</div>
+
 					</div>
+
 					<h4 style="font-size: 20px; padding: 20px">Equip1 - Equip2</h4>
+					<p style="font-size: 15px; padding: 10px">Notre prono</p>
+					<p style="font-size: 15px; padding: 0 10px; margin-top: -20px">
+						<strong>Equip1</strong>
+					</p>
+
 
 				</li>
 				<li class="list-group-item" style="padding: 0">
@@ -111,7 +172,115 @@
 
 	</div>
 
-    <button style="margin-left: 42%; margin-right: auto; width: 15%; margin-top: 0px" type="button" class="btn btn-success">En voir +</button>
+	<button style="margin-left: 42%; margin-right: auto; width: 15%; margin-top: 0px; margin-bottom: 50px" type="button" class="btn btn-success">En voir +</button>
+
+
+	<section class="section-plans" id="section-plans">
+		<div class="u-center-text u-margin-bottom-big">
+			<h2 class="heading-secondary">
+				Accès aux Pronostics
+			</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-1-of-3">
+				<div class="cardVip">
+					<div class="card__side card__side--front-1">
+						<div class="card__title card__title--1">
+							<i class="fas fa-paper-plane"></i>
+							<h4 class="card__heading">Basic</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>1 Website</li>
+								<li>50 GB SSD Storage</li>
+								<li>Unmetered Bandwidth</li>
+								<li>Free SSL Certificate</li>
+								<li>1 Included Domain</li>
+								<li>1 Included Domain</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-1">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$2.95/mo*</p>
+							</div>
+							<a href="#popup" class="btn btn--white">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-1-of-3">
+				<div class="cardVip">
+					<div class="card__side card__side--front-2">
+						<div class="card__title card__title--2">
+							<i class="fas fa-plane"></i>
+							<h4 class="card__heading">Plus</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>Includes Basic Package Features</li>
+								<li>Unlimited Websites</li>
+								<li>Unlimited SSD Storage</li>
+								<li>Unlimited Domains</li>
+								<li>Unlimited Parked Domains</li>
+								<li>Unlimited Sub Domains</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-2">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$5.45/mo*</p>
+							</div>
+							<a href="#popup" class="btn btn--white">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-1-of-3">
+				<div class="cardVip">
+					<div class="card__side card__side--front-3">
+						<div class="card__title card__title--3">
+							<i class="fas fa-rocket"></i>
+							<h4 class="card__heading">Pro</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>Includes Plus Plan Features</li>
+								<li>High Performance</li>
+								<li>2 Spam Experts</li>
+								<li>Free SSL Certificate</li>
+								<li>Domain Privacy</li>
+								<li>Site Backup - CodeGuard Basic</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-3">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$13.95/mo</p>
+							</div>
+							<a href="#popup" class="btn btn--white">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="u-center-text u-margin-top-huge">
+			<a href="#" class="btn btn--green">Get Started</a>
+		</div>
+	</section>
 
 
 {% endblock %}

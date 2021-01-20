@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>
 			{% block title %}{% endblock %}
 		</title>
@@ -9,6 +11,7 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('css') }}
 			{{ encore_entry_link_tags('app') }}
+			<link href="{{ asset('css/vip.css') }}" rel="stylesheet">
 		{% endblock %}
 
 		<style>
@@ -120,9 +123,19 @@
 			}
 
 			body {
-				margin-bottom: 150px
+				background-color: black
+			}
+
+			hr {
+				background-color: white
 			}
 		</style>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+
+		<script src="https://kit.fontawesome.com/bdd89edb33.js"></script>
 	</head>
 	<body>
 		{% include '_includes/header.html.twig' %}
