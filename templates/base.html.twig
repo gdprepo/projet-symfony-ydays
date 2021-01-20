@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 		<title>
 			{% block title %}{% endblock %}
 		</title>
@@ -12,7 +12,12 @@
 			{{ encore_entry_link_tags('css') }}
 			{{ encore_entry_link_tags('app') }}
 			<link href="{{ asset('css/vip.css') }}" rel="stylesheet">
+			<link href="{{ asset('css/styleMenu.css') }}" rel="stylesheet">
+			<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+
 		{% endblock %}
+
 
 		<style>
 			@media(min-width: 768px) {
@@ -123,32 +128,107 @@
 			}
 
 			body {
-				background-color: black
+				background-color: black;
+				color: white
 			}
 
 			hr {
 				background-color: white
 			}
 		</style>
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
-      rel="stylesheet"
-    />
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
 
 		<script src="https://kit.fontawesome.com/bdd89edb33.js"></script>
 	</head>
 	<body>
-		{% include '_includes/header.html.twig' %}
 
-		{% block body %}{% endblock %}
+		<aside class="sidebar">
 
-		{% include '_includes/footer.html.twig' %}
+			<div class="side-inner">
+
+				<div class="logo">
+					<span>L</span>
+
+				</div>
+
+				<div class="nav-menu">
+					<div class="shopSide">
+						<h3 style="text-align:center; letter-spacing: 5px; font-size: 20px; margin-bottom: 15px"></h3>
+						<ul>
+							<li>
+								<a href="#">Devenir VIP</a>
+							</li>
+							<li>
+								<a href="#">Derniers Pronos</a>
+							</li>
+							{# <li>
+								<a href="#">Categorie3</a>
+							</li> #}
+
+						</ul>
+						<hr>
+
+					</div>
 
 
+					<ul>
+						<li>
+							<a href="#">Se connecter</a>
+						</li>
+						<li>
+							<a href="#">S'inscrire</a>
+						</li>
+						{# <li>
+							<a href="#">Categorie3</a>
+						</li> #}
+						{# @if (Auth::check())
+																		                    @if (Auth::user()->role === "ROLE_ADMIN")
+												<li>
+													<a href="/admin">Admin</a>
+												</li>
+												@endif
+																		                    @else
+												<li>
+													<a href="/login">Login</a>
+												</li>
+												@endif #}
+
+					</ul>
+				</div>
+
+			</div>
+
+		</aside>
+		<main>
+			{% include '_includes/header.html.twig' %}
+
+			{% block body %}{% endblock %}
+
+
+			{% include '_includes/footer.html.twig' %}
+		</main>
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>
+
+	<!-- Vendor JS Files -->
+	<script src="{{ asset('jquery/jquery.min.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }} "></script>
+	<script src="{{ asset('jquery.easing/jquery.easing.min.js') }}"></script>
+	<script src="{{ asset('php-email-form/validate.js') }}"></script>
+	<script src="{{ asset('aos/aos.js') }}"></script>
+	<script src="{{ asset('isotope-layout/isotope.pkgd.min.js') }}"></script>
+	<script src="{{ asset('owl.carousel/owl.carousel.min.js') }}"></script>
+
+	<!-- Template Main JS File -->
+	<script src="{{ asset('js/mainShop.js') }}"></script>
+
+
+	<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+	<script src="{{ asset('js/popper.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -156,13 +236,12 @@
 
 	<script>
 		$('.round').click(function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			$('.arrow').toggleClass('bounceAlpha');
-			$(window).scrollTop($('#prono').offset().top);
+e.preventDefault();
+e.stopPropagation();
+$('.arrow').toggleClass('bounceAlpha');
+$(window).scrollTop($('#prono').offset().top);
 
-		});
-
+});
 	</script>
 
 </html>
