@@ -1,5 +1,12 @@
+{% set current_path = app.request.get('_route') %}
+{% if (current_path == 'app_login' or current_path == 'app_register') %}
+<footer style="position:absolute ; bottom: 0; left: 0; right: 0; width: 100%; height: 250px;" id="sticky-footer" class="py-4 bg-dark text-white-50">
+{% else %}
 <footer style="position:relative ; bottom: 0; left: 0; right: 0; width: 100%; height: 250px;" id="sticky-footer" class="py-4 bg-dark text-white-50">
-	<div class="container text-center">
+
+
+{% endif %}
+  <div class="container text-center">
 		<small>Copyright &copy; Your Website</small>
 	</div>
 	<div class="row" style="width: 100%; margin-top: 30px">
@@ -16,7 +23,7 @@
 		</div>
 		<div class="col-4" style="padding: 0px; margin: 0;">
 			<h4>Info</h4>
-      <p>Bienvue sur FuriosaShop mon e-commerce de tableau et tataouge...
+      <p>Bienvue sur Pronostics mon e-commerce de tableau et tataouge...
       </p>
 		</div>
 		<div class="col-4" style="padding: 0px; margin: 0; text-align: right">

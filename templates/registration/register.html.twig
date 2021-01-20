@@ -3,8 +3,17 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+	<style>
+		html {
+			font-size: 70.5%;
+		}
 
-    <div class="container">
+		nav {
+			background-color: white
+		}
+	</style>
+	<div style="width: 30%; background-color: white; padding: 50px; color: black; margin-top: 100px;" class="container">
+
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
