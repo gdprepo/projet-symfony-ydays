@@ -135,6 +135,39 @@
 			hr {
 				background-color: white
 			}
+
+			.footerlinks {
+				list-style: none;
+				margin: 10px 5px 5px;
+				padding: 0;
+
+				color: grey;
+				letter-spacing: 3px
+			}
+
+			.footercontact {
+				list-style: none;
+				margin: 10px 0;
+				color: grey;
+				letter-spacing: 1px
+			}
+
+			.footercontact li {
+				margin: 10px 0;
+			}
+
+			footer a {
+				color: grey;
+			}
+
+			footer a:link {
+				color: grey;
+				text-decoration: none;
+			}
+
+			footer a:hover {
+				color: white;
+			}
 		</style>
 		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
 
@@ -182,16 +215,16 @@
 							<a href="#">Categorie3</a>
 						</li> #}
 						{# @if (Auth::check())
-																		                    @if (Auth::user()->role === "ROLE_ADMIN")
-												<li>
-													<a href="/admin">Admin</a>
-												</li>
-												@endif
-																		                    @else
-												<li>
-													<a href="/login">Login</a>
-												</li>
-												@endif #}
+							@if (Auth::user()->role === "ROLE_ADMIN")
+								<li>
+									<a href="/admin">Admin</a>
+								</li>
+							@endif
+						@else
+							<li>
+								<a href="/login">Login</a>
+							</li>
+						@endif #}
 
 					</ul>
 				</div>
@@ -212,6 +245,8 @@
 		{% endblock %}
 	</body>
 
+	<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
 	<!-- Vendor JS Files -->
 	<script src="{{ asset('jquery/jquery.min.js') }}"></script>
 	<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }} "></script>
@@ -225,7 +260,6 @@
 	<script src="{{ asset('js/mainShop.js') }}"></script>
 
 
-	<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 	<script src="{{ asset('js/popper.min.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>

@@ -119,6 +119,8 @@ body {
   background-color: #55c57a;
 }
 
+
+
 *,
 *::after,
 *::before {
@@ -298,6 +300,8 @@ body {
 .card__price-value {
   font-size: 6rem;
   font-weight: 100;
+  color: white !important;
+
 }
 
 .row {

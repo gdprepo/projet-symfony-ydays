@@ -15,8 +15,29 @@ class HomeController extends AbstractController
 
     public function index(): Response
     {
+        $slider = "";
+        $pronos = "";
+        $vip = "";
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => "HOME"
+            'controller_name' => "HOME",
+            'sliders' => $slider,
+        ]);
+    }
+
+    /**
+     * @Route("/vip", name="vip_show")
+     */
+
+    public function vipShow(): Response
+    {
+        $slider = "";
+        $pronos = "";
+        $vip = "";
+
+        return $this->render('home/vip/show.html.twig', [
+            'controller_name' => "HOME",
+            'sliders' => $slider,
         ]);
     }
 }

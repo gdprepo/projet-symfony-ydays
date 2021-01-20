@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		html {
+			font-size: 70.5%;
+		}
+
+		nav {
+			background-color: white
+		}
+	</style>
+	<section class="section-plans" id="section-plans">
+        <div class="back" style="margin-bottom: -35px">
+            <img style="height: 35px; margin: 0px 55px; " class="img-fluid" src="{{ asset('image/icons/back.png') }}">
+        </div>
+
+		<div style="" class="u-center-text u-margin-bottom-big">
+			<h2 class="heading-secondary">
+				Accès aux Pronostics
+			</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-1-of-3 form1">
+				<div class="cardVip">
+					<div class="card__side card__side--front-1">
+						<div class="card__title card__title--1">
+							<i class="fas fa-paper-plane"></i>
+							<h4 class="card__heading">Basic</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>1 Website</li>
+								<li>50 GB SSD Storage</li>
+								<li>Unmetered Bandwidth</li>
+								<li>Free SSL Certificate</li>
+								<li>1 Included Domain</li>
+								<li>1 Included Domain</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-1">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$2.95/mo*</p>
+							</div>
+							<a href="#popup" class="btn btn--white select1">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-1-of-3 form2">
+				<div class="cardVip">
+					<div class="card__side card__side--front-2">
+						<div class="card__title card__title--2">
+							<i class="fas fa-plane"></i>
+							<h4 class="card__heading">Plus</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>Includes Basic Package Features</li>
+								<li>Unlimited Websites</li>
+								<li>Unlimited SSD Storage</li>
+								<li>Unlimited Domains</li>
+								<li>Unlimited Parked Domains</li>
+								<li>Unlimited Sub Domains</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-2">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$5.45/mo*</p>
+							</div>
+							<a href="#popup" class="btn btn--white select2">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-1-of-3 form3">
+				<div class="cardVip">
+					<div class="card__side card__side--front-3">
+						<div class="card__title card__title--3">
+							<i class="fas fa-rocket"></i>
+							<h4 class="card__heading">Pro</h4>
+						</div>
+
+						<div class="card__details">
+							<ul>
+								<li>Includes Plus Plan Features</li>
+								<li>High Performance</li>
+								<li>2 Spam Experts</li>
+								<li>Free SSL Certificate</li>
+								<li>Domain Privacy</li>
+								<li>Site Backup - CodeGuard Basic</li>
+							</ul>
+						</div>
+					</div>
+					<div class="card__side card__side--back card__side--back-3">
+						<div class="card__cta">
+							<div class="card__price-box">
+								<p class="card__price-only">Only</p>
+								<p class="card__price-value">$13.95/mo</p>
+							</div>
+							<a href="#popup" class="btn btn--white select3">Select</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="u-center-text u-margin-top-huge pay">
+			<a href="#" class="btn btn--green">Devenir VIP</a>
+		</div>
+	</section>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+
+    $(function() {
+        $(".pay").hide();
+        $(".back").hide();
+
+        $(".back").click(function () {
+            $(".form1").show();
+            $(".form2").show();
+            $(".form3").show();
+            $(".pay").hide();
+            $(".back").hide();
+
+        });
+
+        $(".select1").click(function () {
+            $(".form2").hide();
+            $(".form3").hide();
+            $(".pay").show();
+            $(".back").show();
+
+        });
+
+        $(".select2").click(function () {
+            $(".form1").hide();
+            $(".form3").hide();
+            $(".pay").show();
+            $(".back").show();
+        });
+
+        $(".select3").click(function () {
+            $(".form1").hide();
+            $(".form2").hide();
+            $(".pay").show();
+            $(".back").show();
+        });
+    })
+	</script>
+
+
+{% endblock %}
