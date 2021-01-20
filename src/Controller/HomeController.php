@@ -40,4 +40,20 @@ class HomeController extends AbstractController
             'sliders' => $slider,
         ]);
     }
+
+        /**
+     * @Route("/pronos", name="prono_show")
+     */
+
+    public function pronoShow(): Response
+    {
+        $slider = "";
+        $pronos = "";
+        $vip = "";
+
+        return $this->render('home/pronos/show.html.twig', [
+            'controller_name' => "HOME",
+            'sliders' => $slider,
+        ]);
+    }
 }
