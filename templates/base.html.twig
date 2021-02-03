@@ -205,26 +205,21 @@
 
 
 					<ul>
-						<li>
-							<a href="#">Se connecter</a>
-						</li>
-						<li>
-							<a href="#">S'inscrire</a>
-						</li>
-						{# <li>
-							<a href="#">Categorie3</a>
-						</li> #}
-						{# @if (Auth::check())
-							@if (Auth::user()->role === "ROLE_ADMIN")
-								<li>
-									<a href="/admin">Admin</a>
-								</li>
-							@endif
-						@else
+						{% if app.user %}
 							<li>
-								<a href="/login">Login</a>
+								<a href="/dashboard">Dashboard</a>
 							</li>
-						@endif #}
+							<li>
+								<a href="/logout">Se deconnecter</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="/login">Se connecter</a>
+							</li>
+							<li>
+								<a href="/register">S'inscrire</a>
+							</li>
+						{% endif %}
 
 					</ul>
 				</div>

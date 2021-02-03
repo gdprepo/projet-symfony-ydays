@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Prono;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class HomeController extends AbstractController
@@ -16,12 +17,12 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $slider = "";
-        $pronos = "";
+        $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
         $vip = "";
 
         return $this->render('home/index.html.twig', [
             'controller_name' => "HOME",
-            'sliders' => $slider,
+            'pronos' => $pronosRepo->findAll(),
         ]);
     }
 

@@ -169,8 +169,10 @@
 				color: white;
 			}
 		</style>
-		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
-
+		<link
+		href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+		<!-- Axentix CSS minified version -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/css/axentix.min.css">
 		<script src="https://kit.fontawesome.com/bdd89edb33.js"></script>
 	</head>
 	<body>
@@ -192,14 +194,14 @@
 								<a href="/vip">Abonnements VIP</a>
 							</li>
 							<li>
-								<a href="/pronos">Ajouter un Prono</a>
+								<a href="/dashboard/pronos">List des Pronos</a>
 							</li>
 							<li>
 								<a href="/pronos">List des Users</a>
 							</li>
 							{# <li>
-								<a href="#">Categorie3</a>
-							</li> #}
+																													<a href="#">Categorie3</a>
+																												</li> #}
 
 						</ul>
 						<hr>
@@ -208,6 +210,9 @@
 
 
 					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
 						{% if app.user %}
 							<li>
 								<a href="/dashboard">Dashboard</a>
@@ -245,7 +250,10 @@
 				{{ encore_entry_script_tags('app') }}
 			{% endblock %}
 		</body>
-
+		<!-- Axentix JS minified version -->
+		<script src="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/js/axentix.min.js"></script>
+		<!-- Grix system -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/css/grix.min.css">
 		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
 		<!-- Vendor JS Files -->
