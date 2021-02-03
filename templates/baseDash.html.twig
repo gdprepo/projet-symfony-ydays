@@ -189,10 +189,13 @@
 						<h3 style="text-align:center; letter-spacing: 5px; font-size: 20px; margin-bottom: 15px"></h3>
 						<ul>
 							<li>
-								<a href="/vip">Devenir VIP</a>
+								<a href="/vip">Abonnements VIP</a>
 							</li>
 							<li>
-								<a href="/pronos">Derniers Pronos</a>
+								<a href="/pronos">Ajouter un Prono</a>
+							</li>
+							<li>
+								<a href="/pronos">List des Users</a>
 							</li>
 							{# <li>
 								<a href="#">Categorie3</a>
@@ -205,26 +208,21 @@
 
 
 					<ul>
-						<li>
-							<a href="#">Se connecter</a>
-						</li>
-						<li>
-							<a href="#">S'inscrire</a>
-						</li>
-						{# <li>
-							<a href="#">Categorie3</a>
-						</li> #}
-						{# @if (Auth::check())
-							@if (Auth::user()->role === "ROLE_ADMIN")
-								<li>
-									<a href="/admin">Admin</a>
-								</li>
-							@endif
-						@else
+						{% if app.user %}
 							<li>
-								<a href="/login">Login</a>
+								<a href="/dashboard">Dashboard</a>
 							</li>
-						@endif #}
+							<li>
+								<a href="/logout">Se deconnecter</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="/login">Se connecter</a>
+							</li>
+							<li>
+								<a href="/register">S'inscrire</a>
+							</li>
+						{% endif %}
 
 					</ul>
 				</div>
@@ -234,50 +232,49 @@
 		</aside>
 		<main>
 			<div style="z-index: 10000">
-				{% include '_includes/header.html.twig' %}
+				{% include '_includes/headerDash.html.twig' %}
 			</div>
 
-			<div style="z-index: 1">
-				{% block body %}{% endblock %}
-			</div>
+			<div style="z-index: 1"> {% block body %}{% endblock %}
+				</div>
 
 
-			{% include '_includes/footer.html.twig' %}
-		</main>
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
+				{# {% include '_includes/footer.html.twig' %} #}
+			</main>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
 
-	<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
-	<!-- Vendor JS Files -->
-	<script src="{{ asset('jquery/jquery.min.js') }}"></script>
-	{# <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }} "></script> #}
-	<script src="{{ asset('jquery.easing/jquery.easing.min.js') }}"></script>
-	<script src="{{ asset('php-email-form/validate.js') }}"></script>
-	<script src="{{ asset('aos/aos.js') }}"></script>
-	<script src="{{ asset('isotope-layout/isotope.pkgd.min.js') }}"></script>
-	<script src="{{ asset('owl.carousel/owl.carousel.min.js') }}"></script>
+		<!-- Vendor JS Files -->
+		<script src="{{ asset('jquery/jquery.min.js') }}"></script>
+		{# <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }} "></script> #}
+		<script src="{{ asset('jquery.easing/jquery.easing.min.js') }}"></script>
+		<script src="{{ asset('php-email-form/validate.js') }}"></script>
+		<script src="{{ asset('aos/aos.js') }}"></script>
+		<script src="{{ asset('isotope-layout/isotope.pkgd.min.js') }}"></script>
+		<script src="{{ asset('owl.carousel/owl.carousel.min.js') }}"></script>
 
-	<!-- Template Main JS File -->
-	<script src="{{ asset('js/mainShop.js') }}"></script>
+		<!-- Template Main JS File -->
+		<script src="{{ asset('js/mainShop.js') }}"></script>
 
 
-	<script src="{{ asset('js/popper.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/main.js') }}"></script>
+		<script src="{{ asset('js/popper.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/main.js') }}"></script>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	
-	<script>
-		$('.round').click(function (e) {
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+		<script>
+			$('.round').click(function (e) {
 e.preventDefault();
 e.stopPropagation();
 $('.arrow').toggleClass('bounceAlpha');
 $(window).scrollTop($('#prono').offset().top);
 
 });
-	</script>
+		</script>
 
-</html>
+	</html>
