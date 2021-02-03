@@ -1,0 +1,30 @@
+{% extends "baseDash.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+	Modifier le prono
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		label {
+			float: left
+		}
+
+		legend {
+			text-align: left
+		}
+
+
+		.container {
+			text-align: center
+		}
+	</style>
+	<h2 style="text-align:center" class="my-4">Modifier le prono</h2>
+
+	<div style="" class="container">
+		{{ form(prono_form) }}
+
+		</div>
+	{% endblock %}

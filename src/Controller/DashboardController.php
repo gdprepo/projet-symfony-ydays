@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Prono;
+use App\Form\PronoFormType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -27,6 +29,62 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/pronos/list.html.twig', [
             'pronos' => $pronosRepo->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/prono/delete/{id<\d+>}", name="prono_delete")
+     */
+    public function pronoDelete(Request $request, $id)
+    {
+        $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+        $prono = $pronosRepo->find($id);
+
+        if (!$prono) {
+            throw $this->createNotFoundException('No guest found');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($prono);
+        $em->flush();
+
+
+        $this->addFlash(
+            'remove',
+            'Le pronostic est supprimé !'
+        );
+
+        return $this->redirectToRoute('dashboard_pronos');
+    }
+
+    /**
+     * @Route("/dashboard/prono/edit/{id<\d+>}", name="prono_edit")
+     */
+    public function pronoEdit(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+        $prono = $pronosRepo->find($id);
+
+        $pronoForm = $this->createForm(PronoFormType::class, $prono);
+
+        $pronoForm->handleRequest($request);
+
+        if ($pronoForm->isSubmitted() && $pronoForm->isValid()) {
+            $em->persist($prono);
+            $em->flush();
+
+            $this->addFlash(
+                'remove',
+                'Le pronostic est modifié !'
+            );
+            return $this->redirectToRoute('dashboard_pronos');
+        }
+
+        return $this->render('dashboard/pronos/pronoEdit.html.twig', [
+            'prono_form' => $pronoForm->createView()
+
         ]);
     }
 }

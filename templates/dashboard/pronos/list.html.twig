@@ -18,6 +18,11 @@
 	</style>
 
 	<div class="example-wrapper">
+		{% for message in app.flashes('remove') %}
+			<div class="p-3 my-2 rounded-2 success">
+				{{ message }}
+			</div>
+		{% endfor %}
 		<h1 style="text-align:center">List des pronos ! ✅</h1>
 
 		<div style="background-color: white; margin-top: 50px" class="responsive-table">
@@ -43,12 +48,14 @@
 							<td>{{ prono.getDate().format('Y-m-d H:i:s') }}</td>
 							<td>{{ prono.getEquip1 }}</td>
 							<td>
-								<button class="btn shadow-1 primary rounded-4">Supprimer</button>
-
+								<form method="POST" action="{{ path('prono_delete', { id: prono.id }) }}">
+									<button class="btn shadow-1 primary rounded-4">Supprimer</button>
+								</form>
 							</td>
 							<td>
-								<button class="btn shadow-1 primary rounded-4">Modifer</button>
-
+								<a href="{{ path('prono_edit', { id: prono.id }) }}">
+    								<button class="btn shadow-1 primary rounded-4">Modifer</button>
+                                </a>
 							</td>
 						</tr>
 					{% endfor %}
