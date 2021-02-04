@@ -14,7 +14,7 @@
 		.example-wrapper code {
 			background: #F5F5F5;
 			padding: 2px 6px;
-            
+
 		}
 	</style>
 
@@ -24,45 +24,49 @@
 				{{ message }}
 			</div>
 		{% endfor %}
-		<h1 style="text-align:center">List des pronos ! ✅</h1>
+		<h1 style="text-align:center">List des users ! ✅</h1>
 
 		<div style="background-color: white; margin-top: 50px;" class="responsive-table">
 			<table class="table bordered">
 				<thead>
 					<tr>
-						<th>Equip1</th>
-						<th>Equip2</th>
-						<th>Confiance</th>
-						<th>Date</th>
-						<th>Victoire</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						{# <th>Date</th> #}
+						<th>Roles</th>
 						<th>Action(s)</th>
 						<th>
-							<a href="{{ path('prono_add') }}">
-								<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
-									<span class="outline-text">Ajouter</span>
-								</button>
-							</a>
+							{# <a href="{{ path('user_add') }}">
+															<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
+																<span class="outline-text">Ajouter</span>
+															</button>
+														</a> #}
 						</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					{% for prono in pronos %}
+					{% for user in users %}
 						<tr>
-							<td>{{ prono.getEquip1 }}</td>
-							<td>{{ prono.getEquip2 }}</td>
-							<td>{{ prono.getConfiance }}</td>
-							<td>{{ prono.getDate().format('Y-m-d H:i:s') }}</td>
-							<td>{{ prono.getEquip1 }}</td>
+							<td>{{ user.getFirstname}}</td>
+							<td>{{ user.getLastname }}</td>
+							<td>{{ user.getEmail }}</td>
+							{# <td>{{ user.getUpdatedAt() }}</td> #}
 							<td>
-								<form method="POST" action="{{ path('prono_delete', { id: prono.id }) }}">
-									<button class="btn shadow-1 primary rounded-4">Supprimer</button>
-								</form>
+								{% for role in user.getRoles() %}
+									{{ role }}
+								{% endfor %}
 							</td>
 							<td>
-								<a href="{{ path('prono_edit', { id: prono.id }) }}">
+								{# <form method="POST" action="{{ path('user_delete', { id: user.id }) }}">
+									<button class="btn shadow-1 primary rounded-4">Supprimer</button>
+								</form> #}
+							</td>
+							<td>
+								{# <a href="{{ path('user_edit', { id: user.id }) }}">
 									<button class="btn shadow-1 primary rounded-4">Modifer</button>
-								</a>
+								</a> #}
 							</td>
 						</tr>
 					{% endfor %}

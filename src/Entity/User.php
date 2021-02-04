@@ -159,7 +159,7 @@ class User implements UserInterface
     }
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \Datetime;
         return $this;
     }
 
