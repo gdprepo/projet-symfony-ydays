@@ -7,6 +7,7 @@ use App\Entity\Prono;
 use App\Form\PronoFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashboardController extends AbstractController
@@ -30,6 +31,40 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/users/list.html.twig', [
             'users' => $usersRepo->findbyroles(),
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/params", name="dashboard_params")
+     */
+    public function params(Request $request)
+    {
+        // $usersRepo = $this->getDoctrine()->getRepository(User::class);
+        // $app['paypal'] = null;
+        // $app['stripe'] = null;
+        $session = new Session();
+
+
+        if ($request->isMethod('POST')) {
+            $session = new Session();
+
+            if ($request->get('paypal')) {
+                $session->set('paypal',$request->get('paypal'));
+         
+
+            }
+            if ($request->get('stripe')) {
+                $session->set('stripe',$request->get('stripe'));
+           
+            }
+            return $this->redirectToRoute('home');
+        
+        }
+
+        return $this->render('dashboard/params.html.twig', [
+            'user' => $this->getUser(),
+            'paypal' => $session->get('paypal'),
+            'stripe' => $session->get('stripe')
         ]);
     }
 

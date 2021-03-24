@@ -28,6 +28,7 @@ class PronoFixtures extends Fixture
             $prono->setLigue($faker->firstName);
             $key = array_rand($types);
             $prono->setType($types[$key]);
+            $prono->setSub(["simple"]);
             
             $this->addReference('prono'.$i, $prono);
             $manager->persist($prono);

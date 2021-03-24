@@ -47,6 +47,11 @@ class Prono
      */
     private $Type;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $sub = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class Prono
     public function setType(string $Type): self
     {
         $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getSub(): ?array
+    {
+        return $this->sub;
+    }
+
+    public function setSub(array $sub): self
+    {
+        $this->sub = $sub;
 
         return $this;
     }

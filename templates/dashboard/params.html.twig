@@ -1,0 +1,42 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Hello DashboardController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1 style="text-align: center">Params
+			{{ user.getFirstname }}! ✅</h1>
+
+
+		<form method="POST" style="text-align:center" action="{{ path('dashboard_params') }}">
+			<div class="form-field">
+				<label for="name">Key Paypal: {{ paypal }}</label>
+				<input type="text" name="paypal" id="paypal" class="form-control rounded-1" placeholder="Paypal"/>
+			</div>
+
+
+			<div class="form-field">
+				<label for="name">Key Stripe: {{ stripe }}</label>
+				<input type="text" name="stripe" id="name" class="form-control rounded-1" placeholder="Stripe"/>
+			</div>
+
+
+			<button type="submit" class="btn btn-success mt-4">Sauvegarder</button>
+		</form>
+
+	</div>
+{% endblock %}

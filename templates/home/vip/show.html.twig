@@ -25,179 +25,62 @@
 		</div>
 
 		<div class="row">
-			<div class="col-1-of-3 form1">
+			{% for vip in sub %}
+
+			{% if vip.id <= 8 %}
+			<div class="col-1-of-3 form{{ vip.id }} mb-4">
 				<div class="cardSelect">
 
-					<div class="card__side card__side--front-1-selected">
+					<div class="card__side card__side--front-{{ vip.id }}-selected">
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
 								<p class="card__price-value">$2.95/mo*</p>
 							</div>
-							<a href="#popup" class="btn btn--white select1">Select</a>
+							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
 						</div>
 					</div>
 				</div>
 				<div class="cardVip">
-					<div class="card__side card__side--front-1">
-						<div class="card__title card__title--1">
-							<i class="fas fa-paper-plane"></i>
-							<h4 class="card__heading">Basic</h4>
+					<div class="card__side card__side--front-{{ vip.id }}">
+						<div class="card__title card__title--{{ vip.id }}">
+							<i class="{{ vip.logo }}"></i>
+							<h4 class="card__heading mt-4">{{ vip.title }}</h4>
 						</div>
 
 						<div class="card__details">
 							<ul>
-								<li>1 Website</li>
-								<li>50 GB SSD Storage</li>
-								<li>Unmetered Bandwidth</li>
-								<li>Free SSL Certificate</li>
-								<li>1 Included Domain</li>
-								<li>1 Included Domain</li>
+								{% for opt in vip.list %}
+								<li>{{ opt }}</li>
+
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
-					<div class="card__side card__side--back card__side--back-1">
+					<div class="card__side card__side--back card__side--back-{{ vip.id }}">
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
 								<p class="card__price-value">$2.95/mo*</p>
 							</div>
-							<a href="#popup" class="btn btn--white select1">Select</a>
+							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
 						</div>
 					</div>
 				</div>
 			</div>
+				{% endif %}
+			{% endfor %}
 
-			<div class="col-1-of-3 form2">
-				<div class="cardSelect">
 
-					<div class="card__side card__side--front-2-selected">
-						<div class="card__cta">
-							<div class="card__price-box">
-								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$5.45/mo*</p>
-							</div>
-							<a href="#popup" class="btn btn--white select2">Select</a>
-						</div>
-					</div>
-				</div>
-				<div class="cardVip">
-					<div class="card__side card__side--front-2">
-						<div class="card__title card__title--2">
-							<i class="fas fa-plane"></i>
-							<h4 class="card__heading">Plus</h4>
-						</div>
 
-						<div class="card__details">
-							<ul>
-								<li>Includes Basic Package Features</li>
-								<li>Unlimited Websites</li>
-								<li>Unlimited SSD Storage</li>
-								<li>Unlimited Domains</li>
-								<li>Unlimited Parked Domains</li>
-								<li>Unlimited Sub Domains</li>
-							</ul>
-						</div>
-					</div>
-					<div class="card__side card__side--back card__side--back-2">
-						<div class="card__cta">
-							<div class="card__price-box">
-								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$5.45/mo*</p>
-							</div>
-							<a href="#popup" class="btn btn--white select2">Select</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-1-of-3 form3">
-				<div class="cardSelect">
-
-					<div class="card__side card__side--front-3-selected">
-						<div class="card__cta">
-							<div class="card__price-box">
-								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$5.45/mo*</p>
-							</div>
-							<a href="#popup" class="btn btn--white select2">Select</a>
-						</div>
-					</div>
-				</div>
-				<div class="cardVip">
-					<div class="card__side card__side--front-3">
-						<div class="card__title card__title--3">
-							<i class="fas fa-rocket"></i>
-							<h4 class="card__heading">Pro</h4>
-						</div>
-
-						<div class="card__details">
-							<ul>
-								<li>Includes Plus Plan Features</li>
-								<li>High Performance</li>
-								<li>2 Spam Experts</li>
-								<li>Free SSL Certificate</li>
-								<li>Domain Privacy</li>
-								<li>Site Backup - CodeGuard Basic</li>
-							</ul>
-						</div>
-					</div>
-					<div class="card__side card__side--back card__side--back-3">
-						<div class="card__cta">
-							<div class="card__price-box">
-								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$13.95/mo</p>
-							</div>
-							<a href="#popup" class="btn btn--white select3">Select</a>
-						</div>
-					</div>
-				</div>
-			</div>
-            
-			<div class="pay col-7">
-				<div class="card__side card__side--front-3">
-					<div class="card__title card__title--3">
+			{% for vip in sub %}
+			{% if vip.id <= 8 %}
+				
+			<div class="pay{{ vip.id > 1 ? vip.id }} col-7">
+				<div class="card__side card__side--front-{{ vip.id }}">
+					<div class="card__title card__title--{{ vip.id }}">
 						<i class="fas fa-rocket"></i>
-						<h4 class="card__heading">Pro</h4>
-					</div>
-
-					<div class="card__details">
-						<ul>
-							<li>Includes Plus Plan Features</li>
-							<li>High Performance</li>
-							<li>2 Spam Experts</li>
-							<li>Free SSL Certificate</li>
-							<li>Domain Privacy</li>
-							<li>Site Backup - CodeGuard Basic</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="pay2 col-7">
-				<div class="card__side card__side--front-2">
-					<div class="card__title card__title--2">
-						<i class="fas fa-plane"></i>
-						<h4 class="card__heading">Plus</h4>
-					</div>
-
-					<div class="card__details">
-						<ul>
-							<li>Includes Basic Package Features</li>
-							<li>Unlimited Websites</li>
-							<li>Unlimited SSD Storage</li>
-							<li>Unlimited Domains</li>
-							<li>Unlimited Parked Domains</li>
-							<li>Unlimited Sub Domains</li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-			<div class="pay3 col-7">
-				<div class="card__side card__side--front-3">
-					<div class="card__title card__title--3">
-						<i class="fas fa-rocket"></i>
-						<h4 class="card__heading">Pro</h4>
+						<h4 class="card__heading">{{ vip.title }}</h4>
 					</div>
 
 					<div class="card__details">
@@ -213,13 +96,26 @@
 				</div>
 			</div>
 
+			{% endif %}
+
+			{% endfor %}
+
 
 		</div>
 
+		{# {% for vip in sub %}
+			{% if vip.id <= 8 %}
 
-		<div class="u-center-text u-margin-top-huge pay">
-			<a href="#" class="btn btn--green">Devenir VIP</a>
+
+
+			{% endif %}
+
+		{% endfor %} #}
+	{# pay{{ vip.id > 1 ? vip.id }} #}
+		<div id="checkout-button" class="u-center-text u-margin-top-huge ">
+			<a class="btn btn--green">Devenir VIP</a>
 		</div>
+
 	</section>
 
 {% endblock %}
@@ -227,70 +123,139 @@
 
 {% block javascripts %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+	<script type="text/javascript">
+		var stripe = Stripe('pk_test_51Gty04FbyARdQqIBKtMQbX1Bd9KaPygRx3ub6xQRcIpbowjQZhisT3pGhpkpIuXeZsExIqUcdq3LWSWqWJ8EOEVE00allGaPNP');
+      	var checkoutButton = document.getElementById('checkout-button');
+
+      checkoutButton.addEventListener('click', function() {
+        // Create a new Checkout Session using the server-side endpoint you
+        // created in step 3.
+
+		{% if not app.user %}
+			document.location = "/login";
+		{% endif %}
+        fetch('/vip/create-checkout-session', {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({ "price": 5000}),
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using `error.message`.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+      });
+
+	
+	
+	</script>
+
+
+	
+	{% for vip in sub %}
+		<script>
+			$(function() {
+		let index = 1;
+
+	$(".select{{ vip.id }}").click(function () {
+
+		 for (var index = 1; index <= 8; index++) {
+			if (index != {{ vip.id }}) {
+				if (index == 1) {
+					$(".form"+index).hide();
+					$(".pay").hide();	
+				} else {
+					$(".form"+index).hide();
+					$(".pay"+index).hide();
+				}
+
+
+			} else {
+				if (index == 1) {
+					$(".pay").show();
+				} else {
+					$(".pay"+index).show();
+
+				}
+			}
+
+		}
+
+		$(".back").show();
+		$(".cardSelect").show();
+		$(".cardVip").hide();
+
+	});
+
+
+
+			});
+		
+		
+		</script>
+
+
+	{% endfor %}
+	
 	<script>
 
 		$(function () {
-$(".pay").hide();
-$(".back").hide();
-$(".cardSelect").hide();
-$(".pay").hide();
-$(".pay2").hide();
-$(".pay3").hide();
+	$(".pay").hide();
+	$(".back").hide();
+	$(".cardSelect").hide();
+	$(".pay").hide();
+	$(".pay2").hide();
+	$(".pay3").hide();
+	$(".pay4").hide();
+	$(".pay5").hide();
+	$(".pay6").hide();
+	$(".pay7").hide();
+	$(".pay8").hide();
 
-$(".back").click(function () {
-$(".form1").show();
-$(".form2").show();
-$(".form3").show();
+	$(".back").click(function () {
+		$(".form1").show();
+		$(".form2").show();
+		$(".form3").show();
+		$(".form4").show();
+		$(".form5").show();
+		$(".form6").show();
+		$(".form7").show();
+		$(".form8").show();
 
-$(".cardSelect").hide();
-$(".cardVip").show();
+		$(".cardSelect").hide();
+		$(".cardVip").show();
 
-$(".pay").hide();
-$(".pay2").hide();
-$(".pay3").hide();
+		$(".pay").hide();
+		$(".pay2").hide();
+		$(".pay3").hide();
+		$(".pay4").hide();
+		$(".pay5").hide();
+		$(".pay6").hide();
+		$(".pay7").hide();
+		$(".pay8").hide();
 
-$(".back").hide();
+		$(".back").hide();
+
+	});
+
 
 });
 
-$(".select1").click(function () {
-$(".form2").hide();
-$(".form3").hide();
-$(".pay").show();
-$(".pay2").hide();
-$(".pay3").hide();
-$(".back").show();
 
-$(".cardSelect").show();
-$(".cardVip").hide();
-
-});
-
-$(".select2").click(function () {
-$(".form1").hide();
-$(".form3").hide();
-$(".pay3").hide();
-$(".pay").hide();
-
-$(".pay2").show();
-$(".back").show();
-
-$(".cardSelect").show();
-$(".cardVip").hide();
-});
-
-$(".select3").click(function () {
-$(".form1").hide();
-$(".form2").hide();
-$(".pay").hide();
-$(".pay2").hide();
-$(".pay3").show();
-$(".back").show();
-
-$(".cardSelect").show();
-$(".cardVip").hide();
-});
-})
 	</script>
 
 

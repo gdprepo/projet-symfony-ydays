@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Vip;
 use App\Entity\Prono;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,27 +35,46 @@ class HomeController extends AbstractController
     {
         $slider = "";
         $pronos = "";
-        $vip = "";
+        $sub = $this->getDoctrine()->getRepository(Vip::class);
 
         return $this->render('home/vip/show.html.twig', [
             'controller_name' => "HOME",
             'sliders' => $slider,
+            'sub' => $sub->findAll(),
         ]);
     }
 
         /**
-     * @Route("/pronos", name="prono_show")
+     * @Route("/pronos", name="prono_all")
      */
 
-    public function pronoShow(): Response
+    public function pronoAll(): Response
     {
         $slider = "";
-        $pronos = "";
+        $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+
+        $vip = "";
+
+        return $this->render('home/pronos/all.html.twig', [
+            'controller_name' => "HOME",
+            'pronos' => $pronosRepo->findAll(),
+        ]);
+    }
+
+            /**
+     * @Route("/prono/{id}", name="prono_show")
+     */
+
+    public function pronoFind($id): Response
+    {
+        $slider = "";
+        $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+
         $vip = "";
 
         return $this->render('home/pronos/show.html.twig', [
             'controller_name' => "HOME",
-            'sliders' => $slider,
+            'prono' => $pronosRepo->find($id),
         ]);
     }
 }

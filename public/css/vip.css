@@ -194,6 +194,26 @@ body {
   background: linear-gradient(-45deg, #24ff72, #9a4eff);
 }
 
+.card__side--front-4 {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+}
+
+.card__side--front-5 {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+}
+
+.card__side--front-6 {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+}
+
+.card__side--front-7 {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+}
+
+.card__side--front-8 {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+}
+
 .card__side--front-1-selected {
   background: linear-gradient(-45deg, #64b5f6, #f403d1);
 }
@@ -205,6 +225,27 @@ body {
 .card__side--front-3-selected {
   background: linear-gradient(-45deg, #9a4eff, #24ff72);
 }
+
+.card__side--front-4-selected {
+  background: linear-gradient(-45deg, #64b5f6, #f403d1);
+}
+
+.card__side--front-5-selected {
+  background: linear-gradient(-45deg, #ffec61, #f321d7);
+}
+
+.card__side--front-6-selected {
+  background: linear-gradient(-45deg, #9a4eff, #24ff72);
+}
+
+.card__side--front-7-selected {
+  background: linear-gradient(-45deg, #64b5f6, #f403d1);
+}
+
+.card__side--front-8-selected {
+  background: linear-gradient(-45deg, #ffec61, #f321d7);
+}
+
 
 .card__side--back {
   -webkit-transform: rotateY(180deg);
@@ -223,9 +264,36 @@ body {
   background: linear-gradient(-45deg, #9a4eff, #24ff72);
 }
 
+
+.card__side--back-4 {
+  background: linear-gradient(-45deg, #64b5f6, #f403d1);
+}
+
+.card__side--back-5 {
+  background: linear-gradient(-45deg, #ffec61, #f321d7);
+}
+
+.card__side--back-6 {
+  background: linear-gradient(-45deg, #9a4eff, #24ff72);
+}
+
+.card__side--back-7 {
+  background: linear-gradient(-45deg, #64b5f6, #f403d1);
+}
+
+.card__side--back-8 {
+  background: linear-gradient(-45deg, #ffec61, #f321d7);
+}
+
+
 .cardVip:hover .card__side--front-1,
 .cardVip:hover .card__side--front-2,
-.cardVip:hover .card__side--front-3 {
+.cardVip:hover .card__side--front-3,
+.cardVip:hover .card__side--front-4,
+.cardVip:hover .card__side--front-5,
+.cardVip:hover .card__side--front-6,
+.cardVip:hover .card__side--front-7,
+.cardVip:hover .card__side--front-8 {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
@@ -264,6 +332,27 @@ body {
 .card__title--3 .fas {
   font-size: 5rem;
 }
+
+.card__title--4 .fas {
+  font-size: 5rem;
+}
+
+.card__title--5 .fas {
+  font-size: 5rem;
+}
+
+.card__title--6 .fas {
+  font-size: 5rem;
+}
+
+.card__title--7 .fas {
+  font-size: 5rem;
+}
+
+.card__title--8 .fas {
+  font-size: 5rem;
+}
+
 
 .card__heading {
   font-size: 4rem;

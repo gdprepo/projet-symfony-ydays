@@ -38,10 +38,10 @@
 						<th>Action(s)</th>
 						<th>
 							{# <a href="{{ path('user_add') }}">
-															<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
-																<span class="outline-text">Ajouter</span>
-															</button>
-														</a> #}
+								<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
+									<span class="outline-text">Ajouter</span>
+								</button>
+							</a> #}
 						</th>
 
 					</tr>
@@ -55,7 +55,9 @@
 							{# <td>{{ user.getUpdatedAt() }}</td> #}
 							<td>
 								{% for role in user.getRoles() %}
+									{% if role != "ROLE_USER" %}
 									{{ role }}
+									{% endif %}
 								{% endfor %}
 							</td>
 							<td>
