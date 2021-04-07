@@ -1,0 +1,71 @@
+{% extends "baseDash.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+	Modifier le prono
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		label {
+			float: left
+		}
+
+		legend {
+			text-align: left
+		}
+
+
+		.container {
+			text-align: center
+		}
+	</style>
+	<h2 style="text-align:center" class="my-4">Modifier le vip</h2>
+
+	<div style="padding-bottom: 50px" class="container mb-4">
+
+		<div class="mx-auto" style="width: 50%">
+			<form method="POST" action="{{ path('vip_edit', { id: id }) }}">
+				<div class="form-field">
+					<label for="name">Titre</label>
+					<input type="text" name="title" id="name" class="form-control rounded-1" placeholder="Titre"/>
+				</div>
+
+				<div class="form-field">
+					<label for="name">Prix</label>
+					<input type="number" name="price" id="name" class="form-control rounded-1" placeholder="Prix"/>
+				</div>
+
+
+				<div class="form-field">
+					<label for="name">Caracteristiques</label>
+					<button type="button" style="padding: 8px; margin: 0" class="btn btn-success mb-4" id="plus">+</button>
+					<div id="zone">
+						<input type="text" name="list[]" id="list" class="form-control rounded-1 mb-4" placeholder="List"/>
+					
+					</div>
+				</div>
+
+
+				<button type="submit" class="btn btn-success mt-4">Valider</button>
+			</form>
+		</div>
+
+	</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$('#plus').click((e)=> {
+		var inputField = $('#list').clone();
+
+		console.log(inputField)
+		
+		$('#zone').append(inputField);
+
+	})
+
+	
+	</script>
+{% endblock %}

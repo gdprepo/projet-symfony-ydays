@@ -48,6 +48,7 @@ class DefaultController extends AbstractController
                 );
                 $user = $this->getUser();
                 $user->setRoles(['ROLE_CLIENT']);
+                
                 $em->persist($user);
                 $em->flush();
             };

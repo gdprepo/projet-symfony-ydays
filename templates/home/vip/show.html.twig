@@ -35,7 +35,7 @@
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$2.95/mo*</p>
+								<p class="card__price-value">{{ vip.price }} €</p>
 							</div>
 							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
 						</div>
@@ -61,7 +61,7 @@
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
-								<p class="card__price-value">$2.95/mo*</p>
+								<p class="card__price-value">{{ vip.price }} €</p>
 							</div>
 							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
 						</div>
@@ -85,12 +85,9 @@
 
 					<div class="card__details">
 						<ul>
-							<li>Includes Plus Plan Features</li>
-							<li>High Performance</li>
-							<li>2 Spam Experts</li>
-							<li>Free SSL Certificate</li>
-							<li>Domain Privacy</li>
-							<li>Site Backup - CodeGuard Basic</li>
+							{% for opt in vip.list %}
+								<li>{{ opt }}</li>
+							{% endfor %}
 						</ul>
 					</div>
 				</div>
@@ -103,18 +100,18 @@
 
 		</div>
 
-		{# {% for vip in sub %}
+		{% for vip in sub %}
 			{% if vip.id <= 8 %}
-
-
+				<input type="hidden" value="{{ vip.price }}" id="pay{{ vip.id > 1 ? vip.id }}">
+				<div id="checkout-button" value="pay{{ vip.id > 1 ? vip.id }}" class="u-center-text u-margin-top-huge pay{{ vip.id > 1 ? vip.id }}">
+					<a class="btn btn--green">Devenir VIP</a>
+				</div>
 
 			{% endif %}
 
-		{% endfor %} #}
+		{% endfor %}
 	{# pay{{ vip.id > 1 ? vip.id }} #}
-		<div id="checkout-button" class="u-center-text u-margin-top-huge ">
-			<a class="btn btn--green">Devenir VIP</a>
-		</div>
+
 
 	</section>
 
@@ -127,11 +124,16 @@
 
 	<script type="text/javascript">
 		var stripe = Stripe('pk_test_51Gty04FbyARdQqIBKtMQbX1Bd9KaPygRx3ub6xQRcIpbowjQZhisT3pGhpkpIuXeZsExIqUcdq3LWSWqWJ8EOEVE00allGaPNP');
-      	var checkoutButton = document.getElementById('checkout-button');
+      	var checkoutButtons = document.querySelectorAll('#checkout-button');
 
-      checkoutButton.addEventListener('click', function() {
+
+	checkoutButtons.forEach((checkoutButton) => {
+      checkoutButton.addEventListener('click', function(e) {
         // Create a new Checkout Session using the server-side endpoint you
         // created in step 3.
+
+
+		var price = $('#'+ checkoutButton.getAttribute('value')).val()
 
 		{% if not app.user %}
 			document.location = "/login";
@@ -139,7 +141,7 @@
         fetch('/vip/create-checkout-session', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({ "price": 5000}),
+			body: JSON.stringify({ "price": price* 100}),
         })
         .then(function(response) {
           return response.json();
@@ -159,6 +161,10 @@
           console.error('Error:', error);
         });
       });
+
+
+	})
+
 
 	
 	

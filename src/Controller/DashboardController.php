@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Vip;
 use App\Entity\User;
 use App\Entity\Prono;
+use App\Form\VipFormType;
 use App\Form\PronoFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,6 +67,74 @@ class DashboardController extends AbstractController
             'user' => $this->getUser(),
             'paypal' => $session->get('paypal'),
             'stripe' => $session->get('stripe')
+        ]);
+    }
+
+        /**
+     * @Route("/dashboard/vip", name="dashboard_vip")
+     */
+    public function vip()
+    {
+        $vipRepo = $this->getDoctrine()->getRepository(Vip::class);
+
+        return $this->render('dashboard/vip/list.html.twig', [
+            'vips' => $vipRepo->findAll(),
+        ]);
+    }
+
+        /**
+     * @Route("/dashboard/vip/delete/{id<\d+>}", name="vip_delete")
+     */
+    public function vipDelete(Request $request, $id)
+    {
+        $vipsRepo = $this->getDoctrine()->getRepository(Vip::class);
+        $vip = $vipsRepo->find($id);
+
+        if (!$vip) {
+            throw $this->createNotFoundException('No guest found');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($vip);
+        $em->flush();
+
+
+        $this->addFlash(
+            'remove',
+            'Le vip est supprimé !'
+        );
+
+        return $this->redirectToRoute('dashboard_vip');
+    }
+
+    /**
+     * @Route("/dashboard/vip/edit/{id<\d+>}", name="vip_edit")
+     */
+    public function vipEdit(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $vipsRepo = $this->getDoctrine()->getRepository(Vip::class);
+        $vip = $vipsRepo->find($id);
+
+        // $vipForm = $this->createForm(VipFormType::class, $vip);
+
+        // $vipForm->handleRequest($request);
+
+        if ($request->isMethod('post')) {
+            $em->persist($vip);
+            $em->flush();
+
+            $this->addFlash(
+                'remove',
+                'Le vip est modifié !'
+            );
+            return $this->redirectToRoute('dashboard_vip');
+        }
+
+        return $this->render('dashboard/vip/vipEdit.html.twig', [
+            'id' => $id
+
         ]);
     }
 

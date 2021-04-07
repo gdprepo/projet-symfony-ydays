@@ -1,0 +1,86 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Hello DashboardController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+
+		}
+	</style>
+
+	<div class="example-wrapper">
+		{% for message in app.flashes('remove') %}
+			<div class="p-3 my-2 rounded-2 success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<h1 style="text-align:center">List des Abonnements Vip ! ✅</h1>
+
+		<div style="background-color: white; margin-top: 50px;" class="responsive-table">
+			<table class="table bordered">
+				<thead>
+					<tr>
+						<th>title</th>
+						<th>Price</th>
+						<th>List</th>
+
+						<th>Action(s)</th>
+						<th>
+							{% if (vips|length >= 8) %}
+								<button disabled="true" style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
+									<span class="outline-text">Ajouter</span>
+								</button>
+							{% else %}
+							<a href="{{ path('prono_add') }}">
+								<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
+									<span class="outline-text">Ajouter</span>
+								</button>
+							</a>
+
+							{% endif %}
+
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for vip in vips %}
+						<tr>
+							<td>{{ vip.getTitle }}</td>
+							<td>{{ vip.getPrice }} €</td>
+							<td>
+							<ul style="list-style: none">
+								{% for list in vip.getList %}
+									<li>{{ list }}</li>
+								{% endfor %}
+								</ul>
+							</td>
+							<td>
+								<form method="POST" action="{{ path('vip_delete', { id: vip.id }) }}">
+									<button class="btn shadow-1 primary rounded-4">Supprimer</button>
+								</form>
+							</td>
+							<td>
+								<a href="{{ path('vip_edit', { id: vip.id }) }}">
+									<button class="btn shadow-1 primary rounded-4">Modifer</button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+
+	</div>
+{% endblock %}
