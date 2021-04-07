@@ -20,70 +20,84 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('default/index.html.twig', [
-  
-        ]);
+        return $this->render('default/index.html.twig', []);
     }
 
-        /**
+    /**
      * @Route("/vip/success", name="success")
      * #isGranted('ROLE_1')
      */
     public function success(): Response
     {
-        return $this->render('default/success.html.twig', [
-  
-        ]);
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
+
+        $parts = parse_url($actual_link);
+        parse_str($parts['query'], $query);
+
+
+        if ($query['session_id']) {
+            $session = \Stripe\Checkout\Session::retrieve($query['session_id']);
+
+            if ($session['payment_status']) {
+                $em = $this->getDoctrine()->getManager();
+
+                $this->addFlash(
+                    'message',
+                    'Votre commande est validé !'
+                );
+                $user = $this->getUser();
+                $user->setRoles(['ROLE_CLIENT']);
+                $em->persist($user);
+                $em->flush();
+            };
+
+        }
+
+
+
+
+        return $this->render('default/success.html.twig', []);
     }
 
-        /**
+    /**
      * @Route("/vip/error", name="error")
      */
     public function cancel(): Response
     {
-        return $this->render('default/cancel.html.twig', [
-  
-        ]);
+        return $this->render('default/cancel.html.twig', []);
     }
 
-        /**
+    /**
      * @Route("/vip/create-checkout-session", name="checkout")
      */
     public function checkout(Request $request)
     {
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-    
+
         \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
 
-        $em = $this->getDoctrine()->getManager();
+
+
         $postData = json_decode($request->getContent());
-        
+
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
-              'price_data' => [
-                'currency' => 'eur',
-                'product_data' => [
-                  'name' => 'T-shirt',
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => 'T-shirt',
+                    ],
+                    'unit_amount' => $postData->price,
                 ],
-                'unit_amount' => $postData->price,
-              ],
-              'quantity' => 1,
+                'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('home', [
-                $this->addFlash(
-                    'message',
-                    'Votre commande est validé !'
-                ),
-                $user = $this->getUser(),
-                $user->setRoles(['ROLE_CLIENT']),
-                $em->persist($user),
-                $em->flush()
-            ], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url' => "http://127.0.0.1:8080/vip/success?session_id={CHECKOUT_SESSION_ID}",
             'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
-          ]);
+        ]);
 
-        return new JsonResponse(['id' => $session->id ]);
+        return new JsonResponse(['id' => $session->id]);
     }
 }
