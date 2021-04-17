@@ -134,8 +134,9 @@
 
 
 		var price = $('#'+ checkoutButton.getAttribute('value')).val()
-		var name = $('#'+ checkoutButton.getAttribute('name')).val()
+		var name = $('#'+ checkoutButton.getAttribute('value')).attr("name")
 
+		console.log(name)
 
 		{% if not app.user %}
 			document.location = "/login";

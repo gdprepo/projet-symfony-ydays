@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Slider;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,7 +74,13 @@ class DefaultController extends AbstractController
      */
     public function cancel(): Response
     {
-        return $this->render('default/cancel.html.twig', []);
+
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
+        
+        return $this->render('default/cancel.html.twig', [
+            'slider' => $slider
+        ]);
     }
 
     /**
@@ -81,7 +88,7 @@ class DefaultController extends AbstractController
      */
     public function checkout(Request $request)
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
 
