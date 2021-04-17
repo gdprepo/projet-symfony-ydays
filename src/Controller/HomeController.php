@@ -2,15 +2,35 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Vip;
 use App\Entity\Prono;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class HomeController extends AbstractController
 {
+    public function __construct(Security $security)
+    {
+        $this->user = $security->getUser();
+
+        if ($this->user ) {
+            $date = new DateTime('now');
+
+            if ($this->user->getdateSub()) {
+                if ($this->user->getdateSub()->format('Y-m-d') == $date->format('Y-m-d')) {
+                    $this->user->setRoles([]);
+                    $this->user->setDateSub(null);
+                }
+            }
+        }
+
+    }
+
     /**
      * @Route("/home", name="home")
      */
@@ -19,6 +39,7 @@ class HomeController extends AbstractController
     {
         $slider = "";
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+        $imgRepo = $this->getDoctrine()->getRepository(Slider::class);
         $vip = "";
 
         return $this->render('home/index.html.twig', [

@@ -8,12 +8,20 @@ use App\Entity\Prono;
 use App\Form\VipFormType;
 use App\Form\PronoFormType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashboardController extends AbstractController
 {
+    public function __construct(Security $security)
+    {
+        $this->user = $security->getUser();
+
+        
+    }
+
     /**
      * @Route("/dashboard", name="dashboard")
      */

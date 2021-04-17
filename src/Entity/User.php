@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateSub;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -200,6 +205,18 @@ class User implements UserInterface
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getDateSub(): ?\DateTimeInterface
+    {
+        return $this->dateSub;
+    }
+
+    public function setDateSub(?\DateTimeInterface $dateSub): self
+    {
+        $this->dateSub = $dateSub;
 
         return $this;
     }

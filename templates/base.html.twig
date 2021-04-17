@@ -208,12 +208,24 @@
 
 					<ul>
 						{% if app.user %}
-							<li>
-								<a href="/dashboard">Dashboard</a>
-							</li>
+							{% if app.user.roles[0] == "ROLE_ADMIN" %}
+								<li>
+									<a href="/dashboard">Dashboard </a>
+								</li>
+							{% endif %}
+
+							
 							<li>
 								<a href="/logout">Se deconnecter</a>
 							</li>
+
+							{% if app.user.getDateSub() %}
+							<li>
+								<a>Date de fin d'abonnement: {{ app.user.getDateSub().format('Y-m-d') }}</a>
+							</li>
+							{% endif %}
+
+
 						{% else %}
 							<li>
 								<a href="/login">Se connecter</a>

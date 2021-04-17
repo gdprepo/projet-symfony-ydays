@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
-
 
     /**
      * @Route("/default", name="default")
@@ -29,6 +29,9 @@ class DefaultController extends AbstractController
      */
     public function success(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
 
@@ -46,9 +49,15 @@ class DefaultController extends AbstractController
                     'message',
                     'Votre commande est validé !'
                 );
+
                 $user = $this->getUser();
+
                 $user->setRoles(['ROLE_CLIENT']);
-                
+
+                $date = new DateTime('now');
+                $date->modify('+1 months');
+                $user->setDateSub($date);
+            
                 $em->persist($user);
                 $em->flush();
             };
