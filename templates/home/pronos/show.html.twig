@@ -47,8 +47,9 @@
 								{{ prono.getType() }}
 							</p>
 
+							<label class="ml-4 mt-4">Pourcentage de Confiance:</label>
 							<div style="width: 50%; top: 0; margin-top: -20px; margin-left: 28%" class="progress">
-								<div placeholder="plpl" class="progress-bar" role="progressbar" style="width: {{ prono.getConfiance }}%" aria-valuenow="{{ prono.getConfiance }}" aria-valuemin="0" aria-valuemax="100">Indice de confience</div>
+								<div placeholder="plpl" class="progress-bar" role="progressbar" style="width: {{ prono.getConfiance }}%" aria-valuenow="{{ prono.getConfiance }}" aria-valuemin="0" aria-valuemax="100">{{ prono.getConfiance }} %</div>
 							</div>
 
 						</div>

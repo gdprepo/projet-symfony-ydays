@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Vip;
 use App\Entity\User;
 use App\Entity\Prono;
+use App\Entity\Slider;
 use App\Form\VipFormType;
 use App\Form\PronoFormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ class DashboardController extends AbstractController
     {
         $this->user = $security->getUser();
 
-        
+
     }
 
     /**
@@ -27,8 +28,12 @@ class DashboardController extends AbstractController
      */
     public function index()
     {
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
+
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
+            'slider' => $slider
         ]);
     }
 
@@ -38,9 +43,12 @@ class DashboardController extends AbstractController
     public function users()
     {
         $usersRepo = $this->getDoctrine()->getRepository(User::class);
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('dashboard/users/list.html.twig', [
             'users' => $usersRepo->findbyroles(),
+            'slider' => $slider
         ]);
     }
 
@@ -53,10 +61,13 @@ class DashboardController extends AbstractController
         // $app['paypal'] = null;
         // $app['stripe'] = null;
         $session = new Session();
-
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         if ($request->isMethod('POST')) {
             $session = new Session();
+            $em = $this->getDoctrine()->getManager();
+
 
             if ($request->get('paypal')) {
                 $session->set('paypal',$request->get('paypal'));
@@ -67,6 +78,40 @@ class DashboardController extends AbstractController
                 $session->set('stripe',$request->get('stripe'));
            
             }
+
+            if ($request->get('logo')) {
+                if ($slider) {
+                    $slider->setLogo($request->get('logo'));
+
+                    $em->persist($slider);
+                    $em->flush();
+                } else {
+                    $slider = new Slider();
+
+                    $slider->setLogo($request->get('logo'));
+
+                    $em->persist($slider);
+                    $em->flush();
+                }
+            }
+
+            if ($request->get('sld')) {
+                if ($slider) {
+                    $slider->setSld($request->get('sld'));
+
+                    $em->persist($slider);
+                    $em->flush();
+                } else {
+                    $slider = new Slider();
+
+                    $slider->setSld($request->get('sld'));
+
+                    $em->persist($slider);
+                    $em->flush();
+                }
+            }
+
+
             return $this->redirectToRoute('home');
         
         }
@@ -74,7 +119,8 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/params.html.twig', [
             'user' => $this->getUser(),
             'paypal' => $session->get('paypal'),
-            'stripe' => $session->get('stripe')
+            'stripe' => $session->get('stripe'),
+            'slider' => $slider
         ]);
     }
 
@@ -84,9 +130,12 @@ class DashboardController extends AbstractController
     public function vip()
     {
         $vipRepo = $this->getDoctrine()->getRepository(Vip::class);
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('dashboard/vip/list.html.twig', [
             'vips' => $vipRepo->findAll(),
+            'slider' => $slider
         ]);
     }
 
@@ -124,6 +173,8 @@ class DashboardController extends AbstractController
 
         $vipsRepo = $this->getDoctrine()->getRepository(Vip::class);
         $vip = $vipsRepo->find($id);
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         // $vipForm = $this->createForm(VipFormType::class, $vip);
 
@@ -141,8 +192,8 @@ class DashboardController extends AbstractController
         }
 
         return $this->render('dashboard/vip/vipEdit.html.twig', [
-            'id' => $id
-
+            'id' => $id,
+            'slider' => $slider
         ]);
     }
 
@@ -152,9 +203,12 @@ class DashboardController extends AbstractController
     public function pronos()
     {
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('dashboard/pronos/list.html.twig', [
             'pronos' => $pronosRepo->findAll(),
+            'slider' => $slider
         ]);
     }
 
@@ -189,9 +243,12 @@ class DashboardController extends AbstractController
     public function pronoAdd(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         // $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
         $prono = new Prono;
+
 
         $pronoForm = $this->createForm(PronoFormType::class, $prono);
 
@@ -210,8 +267,8 @@ class DashboardController extends AbstractController
         }
 
         return $this->render('dashboard/pronos/pronoAdd.html.twig', [
-            'prono_form' => $pronoForm->createView()
-
+            'prono_form' => $pronoForm->createView(),
+            'slider' => $slider
         ]);
     }
 
@@ -221,6 +278,9 @@ class DashboardController extends AbstractController
     public function pronoEdit(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
         $prono = $pronosRepo->find($id);
@@ -241,8 +301,8 @@ class DashboardController extends AbstractController
         }
 
         return $this->render('dashboard/pronos/pronoEdit.html.twig', [
-            'prono_form' => $pronoForm->createView()
-
+            'prono_form' => $pronoForm->createView(),
+            'slider' => $slider
         ]);
     }
 }

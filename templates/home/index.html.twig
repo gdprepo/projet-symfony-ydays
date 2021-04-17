@@ -30,10 +30,21 @@
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img class="d-block w-100" src="https://via.placeholder.com/1080x500" alt="First slide">
+					<img class="d-block w-100" src="{{ slider ? slider.getSld : 'https://via.placeholder.com/1080x500' }}" alt="First slide">
+					
+					{% if (app.user) %}
+					{% if (not app.user.dateSub()) %}
 					<a href="/vip">
-						<button style="padding: 15px; margin-top: -250px; margin-left: 42%; margin-right: auto; width: 15%" type="button" class="btn btn-outline-success">S'inscrire</button>
+						<button style="padding: 15px; margin-top: -250px; margin-left: 42%; margin-right: auto; width: 15%; background-color: white; color: green" type="button" class="btn btn-success">S'inscrire</button>
 					</a>
+					{% endif %}
+					{% else %}
+					<a href="/vip">
+						<button style="padding: 15px; margin-top: -250px; margin-left: 42%; margin-right: auto; width: 15%; background-color: white; color: green" type="button" class="btn btn-success">S'inscrire</button>
+					</a>
+
+					{% endif %}
+
 				</div>
 
 				{# <div class="carousel-item">

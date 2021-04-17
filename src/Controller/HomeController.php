@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Vip;
 use App\Entity\Prono;
+use App\Entity\Slider;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,14 +38,15 @@ class HomeController extends AbstractController
 
     public function index(): Response
     {
-        $slider = "";
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
-        $imgRepo = $this->getDoctrine()->getRepository(Slider::class);
-        $vip = "";
+
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('home/index.html.twig', [
             'controller_name' => "HOME",
             'pronos' => $pronosRepo->findAll(),
+            'slider' => $slider
         ]);
     }
 
@@ -57,11 +59,15 @@ class HomeController extends AbstractController
         $slider = "";
         $pronos = "";
         $sub = $this->getDoctrine()->getRepository(Vip::class);
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('home/vip/show.html.twig', [
             'controller_name' => "HOME",
             'sliders' => $slider,
             'sub' => $sub->findAll(),
+            'slider' => $slider
+
         ]);
     }
 
@@ -73,12 +79,13 @@ class HomeController extends AbstractController
     {
         $slider = "";
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
-
-        $vip = "";
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('home/pronos/all.html.twig', [
             'controller_name' => "HOME",
             'pronos' => $pronosRepo->findAll(),
+            'slider' => $slider
         ]);
     }
 
@@ -90,12 +97,13 @@ class HomeController extends AbstractController
     {
         $slider = "";
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
-
-        $vip = "";
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         return $this->render('home/pronos/show.html.twig', [
             'controller_name' => "HOME",
             'prono' => $pronosRepo->find($id),
+            'slider' => $slider
         ]);
     }
 }

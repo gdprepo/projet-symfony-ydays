@@ -29,8 +29,6 @@ class DefaultController extends AbstractController
      */
     public function success(): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
 
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
@@ -83,11 +81,9 @@ class DefaultController extends AbstractController
      */
     public function checkout(Request $request)
     {
-        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
-
-
 
         $postData = json_decode($request->getContent());
 
@@ -97,7 +93,7 @@ class DefaultController extends AbstractController
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'T-shirt',
+                        'name' => $postData->name,
                     ],
                     'unit_amount' => $postData->price,
                 ],

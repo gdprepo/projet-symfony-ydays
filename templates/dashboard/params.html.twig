@@ -38,5 +38,22 @@
 			<button type="submit" class="btn btn-success mt-4">Sauvegarder</button>
 		</form>
 
+
+		<form class="mt-4" method="POST" style="text-align:center" action="{{ path('dashboard_params') }}">
+			<div class="form-field">
+				<label for="name">Logo: {{ slider ? slider.getLogo() : "null" }}</label>
+				<input type="text" name="logo" id="paypal" class="form-control rounded-1" placeholder="Logo"/>
+			</div>
+
+
+			<div class="form-field">
+				<label for="name">Slider: {{ slider ? slider.getSld() : "null" }}</label>
+				<input type="text" name="sld" id="name" class="form-control rounded-1" placeholder="Slider"/>
+			</div>
+
+
+			<button type="submit" class="btn btn-success mt-4">Sauvegarder</button>
+		</form>
+
 	</div>
 {% endblock %}
