@@ -19,6 +19,7 @@ class VipRepository extends ServiceEntityRepository
         parent::__construct($registry, Vip::class);
     }
 
+
     // /**
     //  * @return Vip[] Returns an array of Vip objects
     //  */

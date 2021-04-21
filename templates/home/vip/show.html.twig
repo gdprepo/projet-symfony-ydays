@@ -25,25 +25,26 @@
 		</div>
 
 		<div class="row">
+			{% set index = 1 %}
 			{% for vip in sub %}
 
-			{% if vip.id <= 8 %}
-			<div class="col-1-of-3 form{{ vip.id }} mb-4">
+			{% if index <= 8 %}
+			<div class="col-1-of-3 form{{ index }} mb-4">
 				<div class="cardSelect">
 
-					<div class="card__side card__side--front-{{ vip.id }}-selected">
+					<div class="card__side card__side--front-{{ index }}-selected">
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
 								<p class="card__price-value">{{ vip.price }} €</p>
 							</div>
-							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
+							<a href="#popup" class="btn btn--white select{{ index }}">Select</a>
 						</div>
 					</div>
 				</div>
 				<div class="cardVip">
-					<div class="card__side card__side--front-{{ vip.id }}">
-						<div class="card__title card__title--{{ vip.id }}">
+					<div class="card__side card__side--front-{{ index }}">
+						<div class="card__title card__title--{{ index}}">
 							<i class="{{ vip.logo }}"></i>
 							<h4 class="card__heading mt-4">{{ vip.title }}</h4>
 						</div>
@@ -57,28 +58,31 @@
 							</ul>
 						</div>
 					</div>
-					<div class="card__side card__side--back card__side--back-{{ vip.id }}">
+					<div class="card__side card__side--back card__side--back-{{ index }}">
 						<div class="card__cta">
 							<div class="card__price-box">
 								<p class="card__price-only">Only</p>
 								<p class="card__price-value">{{ vip.price }} €</p>
 							</div>
-							<a href="#popup" class="btn btn--white select{{ vip.id }}">Select</a>
+							<a href="#popup" class="btn btn--white select{{ index }}">Select</a>
 						</div>
 					</div>
 				</div>
 			</div>
 				{% endif %}
+				{% set index= index +1 %}
+
 			{% endfor %}
 
 
+			{% set index2 = 1 %}
 
 			{% for vip in sub %}
-			{% if vip.id <= 8 %}
+			{% if index2 <= 8 %}
 				
-			<div class="pay{{ vip.id > 1 ? vip.id }} col-7">
-				<div class="card__side card__side--front-{{ vip.id }}">
-					<div class="card__title card__title--{{ vip.id }}">
+			<div class="pay{{ index2 > 1 ? index2 }} col-7">
+				<div class="card__side card__side--front-{{ index2 }}">
+					<div class="card__title card__title--{{ index2 }}">
 						<i class="fas fa-rocket"></i>
 						<h4 class="card__heading">{{ vip.title }}</h4>
 					</div>
@@ -93,6 +97,8 @@
 				</div>
 			</div>
 
+			{% set index2 = index2 +1 %}
+
 			{% endif %}
 
 			{% endfor %}
@@ -100,14 +106,18 @@
 
 		</div>
 
+		{% set index3 = 1 %}
 		{% for vip in sub %}
-			{% if vip.id <= 8 %}
-				<input type="hidden" class="{{ vip.duree ? vip.duree : 1 }}" name="{{ vip.title }}" value="{{ vip.price }}" id="pay{{ vip.id > 1 ? vip.id }}">
-				<div id="checkout-button" value="pay{{ vip.id > 1 ? vip.id }}" class="u-center-text u-margin-top-huge pay{{ vip.id > 1 ? vip.id }}">
+			{% if index3 <= 8 %}
+				<input type="hidden" class="{{ vip.duree ? vip.duree : 1 }}" name="{{ vip.title }}" value="{{ vip.price }}" id="pay{{ index3 > 1 ? index3 }}">
+				<div id="checkout-button" value="pay{{ index3 > 1 ? index3 }}" class="u-center-text u-margin-top-huge pay{{ index3 > 1 ? index3 }}">
 					<a class="btn btn--green">Devenir VIP</a>
 				</div>
 
+
+
 			{% endif %}
+			{% set index3 = index3 +1 %}
 
 		{% endfor %}
 	{# pay{{ vip.id > 1 ? vip.id }} #}
@@ -174,17 +184,19 @@
 	
 	</script>
 
+	{% set indexSelect = 1 %}
 
 	
 	{% for vip in sub %}
 		<script>
 			$(function() {
-		let index = 1;
 
-	$(".select{{ vip.id }}").click(function () {
+
+	$(".select{{ indexSelect }}").click(function () {
+	
 
 		 for (var index = 1; index <= 8; index++) {
-			if (index != {{ vip.id }}) {
+			if (index != {{indexSelect}}) {
 				if (index == 1) {
 					$(".form"+index).hide();
 					$(".pay").hide();	
@@ -203,6 +215,7 @@
 				}
 			}
 
+
 		}
 
 		$(".back").show();
@@ -211,13 +224,13 @@
 
 	});
 
+	{% set indexSelect = indexSelect +1 %}
 
 
 			});
 		
 		
 		</script>
-
 
 	{% endfor %}
 	

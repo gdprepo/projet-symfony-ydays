@@ -43,10 +43,14 @@ class HomeController extends AbstractController
         $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
         $slider = $sliderRepo->find(1);
 
+        $vipRepo = $this->getDoctrine()->getRepository(Vip::class);
+
+
         return $this->render('home/index.html.twig', [
             'controller_name' => "HOME",
             'pronos' => $pronosRepo->findAll(),
-            'slider' => $slider
+            'slider' => $slider,
+            'sub' => $vipRepo->findAll()
         ]);
     }
 

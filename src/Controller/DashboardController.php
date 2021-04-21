@@ -181,11 +181,15 @@ class DashboardController extends AbstractController
 
         // $vipForm->handleRequest($request);
 
+        // fas fa-paper-plane
+
         if ($request->isMethod('post')) {
             $vip->setTitle($request->get('title'));
             $vip->setDuree($request->get('duree'));
             $vip->setPrice($request->get('price'));
             $vip->setList($request->get('list'));
+            $vip->setLogo($request->get('logo'));
+
             $em->persist($vip);
             $em->flush();
 
