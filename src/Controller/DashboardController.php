@@ -68,16 +68,20 @@ class DashboardController extends AbstractController
         if ($request->isMethod('POST')) {
             $session = new Session();
             $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
 
 
             if ($request->get('paypal')) {
                 $session->set('paypal',$request->get('paypal'));
-         
+                
 
             }
             if ($request->get('stripe')) {
                 $session->set('stripe',$request->get('stripe'));
-           
+                $user->setStripePublic($request->get('stripe'));
+
+                $em->persist($user);
+                $em->flush();
             }
 
             if ($request->get('logo')) {

@@ -12,9 +12,18 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends AbstractController
 {
+
+    public function __construct()
+    {
+        // $this->userRepo = $this->getDoctrine()->getRepository(User::class);
+
+        // $this->admin = $this->userRepo->findBy(array('lastname' => 'Administrateur'));
+
+    }
 
     /**
      * @Route("/default", name="default")
@@ -31,8 +40,10 @@ class DefaultController extends AbstractController
     public function success(): Response
     {
 
+        // sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi
+
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
+        \Stripe\Stripe::setApiKey("sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi");
 
         $parts = parse_url($actual_link);
         parse_str($parts['query'], $query);
@@ -56,13 +67,12 @@ class DefaultController extends AbstractController
                 $user->setRoles(['ROLE_CLIENT']);
 
                 $date = new DateTime('now');
-                $date->modify('+'. $query['qty'] .' months');
+                $date->modify('+' . $query['qty'] . ' months');
                 $user->setDateSub($date);
-            
+
                 $em->persist($user);
                 $em->flush();
             };
-
         }
 
 
@@ -81,7 +91,7 @@ class DefaultController extends AbstractController
 
         $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
         $slider = $sliderRepo->find(1);
-        
+
         return $this->render('default/cancel.html.twig', [
             'slider' => $slider
         ]);
@@ -93,8 +103,16 @@ class DefaultController extends AbstractController
     public function checkout(Request $request)
     {
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // $userRepo = $this->getDoctrine()->getRepository(User::class);
 
-        \Stripe\Stripe::setApiKey('sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi');
+        // $userAdmin = $userRepo->findBy(array('lastname' => 'Administrateur'), array('firstname' => 'ASC'), 1, 0)[0];
+
+        // if ($this->admin) {
+        //     $key = $this->admin->getStripePublic();
+        //     \Stripe\Stripe::setApiKey($key);
+        // } else {
+        \Stripe\Stripe::setApiKey("sk_test_51Gty04FbyARdQqIBN58cVTPuMnPrtoUzW7PO3SfxOxjSl9jVWoQ9uQ51JBnN2hesiQKjtstDM0GDBytYppAuXfEY00wR5yOgYi");
+        // }
 
         $postData = json_decode($request->getContent());
 
@@ -112,7 +130,7 @@ class DefaultController extends AbstractController
 
             ]],
             'mode' => 'payment',
-            'success_url' => "http://127.0.0.1:8080/vip/success?session_id={CHECKOUT_SESSION_ID}&qty=".$postData->qty,
+            'success_url' => "http://127.0.0.1:8080/vip/success?session_id={CHECKOUT_SESSION_ID}&qty=" . $postData->qty,
             'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 

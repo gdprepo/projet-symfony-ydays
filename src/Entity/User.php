@@ -63,6 +63,11 @@ class User implements UserInterface
      */
     private $dateSub;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripe_public;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -217,6 +222,18 @@ class User implements UserInterface
     public function setDateSub(?\DateTimeInterface $dateSub): self
     {
         $this->dateSub = $dateSub;
+
+        return $this;
+    }
+
+    public function getStripePublic(): ?string
+    {
+        return $this->stripe_public;
+    }
+
+    public function setStripePublic(?string $stripe_public): self
+    {
+        $this->stripe_public = $stripe_public;
 
         return $this;
     }
