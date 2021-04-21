@@ -102,7 +102,7 @@
 
 		{% for vip in sub %}
 			{% if vip.id <= 8 %}
-				<input type="hidden" name="{{ vip.title }}" value="{{ vip.price }}" id="pay{{ vip.id > 1 ? vip.id }}">
+				<input type="hidden" class="{{ vip.duree ? vip.duree : 1 }}" name="{{ vip.title }}" value="{{ vip.price }}" id="pay{{ vip.id > 1 ? vip.id }}">
 				<div id="checkout-button" value="pay{{ vip.id > 1 ? vip.id }}" class="u-center-text u-margin-top-huge pay{{ vip.id > 1 ? vip.id }}">
 					<a class="btn btn--green">Devenir VIP</a>
 				</div>
@@ -135,6 +135,7 @@
 
 		var price = $('#'+ checkoutButton.getAttribute('value')).val()
 		var name = $('#'+ checkoutButton.getAttribute('value')).attr("name")
+		var duree = $('#'+ checkoutButton.getAttribute('value')).attr("class")
 
 		console.log(name)
 
@@ -144,7 +145,7 @@
         fetch('/vip/create-checkout-session', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({ "price": price* 100, "name": name}),
+			body: JSON.stringify({ "price": price* 100, "name": name, "qty": duree}),
         })
         .then(function(response) {
           return response.json();

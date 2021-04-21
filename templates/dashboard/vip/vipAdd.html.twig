@@ -21,12 +21,12 @@
 			text-align: center
 		}
 	</style>
-	<h2 style="text-align:center" class="my-4">Modifier le vip</h2>
+	<h2 style="text-align:center" class="my-4">Creer le vip</h2>
 
 	<div style="padding-bottom: 50px" class="container mb-4">
 
 		<div class="mx-auto" style="width: 50%">
-			<form method="POST" action="{{ path('vip_edit', { id: id }) }}">
+			<form method="POST" action="{{ path('vip_add') }}">
 				<div class="form-field">
 					<label for="name">Titre</label>
 					<input type="text" name="title" id="name" class="form-control rounded-1" placeholder="Titre"/>

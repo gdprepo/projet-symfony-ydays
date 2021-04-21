@@ -8,6 +8,7 @@ use App\Entity\Prono;
 use App\Entity\Slider;
 use App\Form\VipFormType;
 use App\Form\PronoFormType;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
@@ -164,6 +165,42 @@ class DashboardController extends AbstractController
         return $this->redirectToRoute('dashboard_vip');
     }
 
+        /**
+     * @Route("/dashboard/vip/add", name="vip_add")
+     */
+    public function vipAdd(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // $vipsRepo = $this->getDoctrine()->getRepository(Vip::class);
+        $vip = new Vip;
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
+
+        // $vipForm = $this->createForm(VipFormType::class, $vip);
+
+        // $vipForm->handleRequest($request);
+
+        if ($request->isMethod('post')) {
+            $vip->setTitle($request->get('title'));
+            $vip->setDuree($request->get('duree'));
+            $vip->setPrice($request->get('price'));
+            $vip->setList($request->get('list'));
+            $em->persist($vip);
+            $em->flush();
+
+            $this->addFlash(
+                'remove',
+                'Le vip est modifié !'
+            );
+            return $this->redirectToRoute('dashboard_vip');
+        }
+
+        return $this->render('dashboard/vip/vipAdd.html.twig', [
+            'slider' => $slider
+        ]);
+    }
+
     /**
      * @Route("/dashboard/vip/edit/{id<\d+>}", name="vip_edit")
      */
@@ -181,6 +218,21 @@ class DashboardController extends AbstractController
         // $vipForm->handleRequest($request);
 
         if ($request->isMethod('post')) {
+            if ($request->get('title')) {
+                $vip->setTitle($request->get('title'));
+            }
+            if ($request->get('duree')) {
+                $vip->setDuree($request->get('duree'));
+            }
+            if ($request->get('price')) {
+                $vip->setPrice($request->get('price'));
+            }
+            if ($request->get('list')) {
+                $vip->setList([]);
+                $vip->setList($request->get('list'));
+
+            }
+
             $em->persist($vip);
             $em->flush();
 
@@ -255,7 +307,7 @@ class DashboardController extends AbstractController
         $pronoForm->handleRequest($request);
 
         if ($pronoForm->isSubmitted() && $pronoForm->isValid()) {
-
+            $prono->setCreatedAt(new DateTime());
             $em->persist($prono);
             $em->flush();
 

@@ -19,6 +19,11 @@ class PronoRepository extends ServiceEntityRepository
         parent::__construct($registry, Prono::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('Date' => 'ASC'));
+    }
+
     // /**
     //  * @return Prono[] Returns an array of Prono objects
     //  */

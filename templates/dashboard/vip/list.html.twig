@@ -33,6 +33,7 @@
 						<th>title</th>
 						<th>Price</th>
 						<th>List</th>
+						<th>Durée</th>
 
 						<th>Action(s)</th>
 						<th>
@@ -41,7 +42,7 @@
 									<span class="outline-text">Ajouter</span>
 								</button>
 							{% else %}
-							<a href="{{ path('prono_add') }}">
+							<a href="{{ path('vip_add') }}">
 								<button style="height: 40px; font-size: 15px; margin:0" class="btn shadow-1 rounded-1 outline txt-blue">
 									<span class="outline-text">Ajouter</span>
 								</button>
@@ -65,6 +66,7 @@
 								{% endfor %}
 								</ul>
 							</td>
+							<td>{{ vip.getDuree ? vip.getDuree : 1 }} mois</td>
 							<td>
 								<form method="POST" action="{{ path('vip_delete', { id: vip.id }) }}">
 									<button class="btn shadow-1 primary rounded-4">Supprimer</button>

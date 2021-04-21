@@ -84,8 +84,9 @@ class HomeController extends AbstractController
 
         return $this->render('home/pronos/all.html.twig', [
             'controller_name' => "HOME",
-            'pronos' => $pronosRepo->findAll(),
-            'slider' => $slider
+            'pronos' => $pronosRepo->findAll(array('date'=>'asc')),
+            'slider' => $slider,
+            'now' => new Datetime('now')
         ]);
     }
 

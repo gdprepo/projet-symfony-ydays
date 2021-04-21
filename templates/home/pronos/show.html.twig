@@ -70,9 +70,13 @@
 			</div>
 		</div>
 
+		{% if ( not app.user or not app.user.dateSub()) %}
+
 		<div class="u-center-text u-margin-top-huge pay">
 			<a href="/vip" class="btn btn--green">Devenir VIP</a>
 		</div>
+
+		{% endif %}
 	</section>
 
 {% endblock %}

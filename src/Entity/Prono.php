@@ -52,6 +52,11 @@ class Prono
      */
     private $sub = [];
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created_at;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Prono
     public function setSub(array $sub): self
     {
         $this->sub = $sub;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

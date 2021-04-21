@@ -37,6 +37,8 @@ class DefaultController extends AbstractController
         $parts = parse_url($actual_link);
         parse_str($parts['query'], $query);
 
+        $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
+        $slider = $sliderRepo->find(1);
 
         if ($query['session_id']) {
             $session = \Stripe\Checkout\Session::retrieve($query['session_id']);
@@ -54,7 +56,7 @@ class DefaultController extends AbstractController
                 $user->setRoles(['ROLE_CLIENT']);
 
                 $date = new DateTime('now');
-                $date->modify('+1 months');
+                $date->modify('+'. $query['qty'] .' months');
                 $user->setDateSub($date);
             
                 $em->persist($user);
@@ -66,7 +68,9 @@ class DefaultController extends AbstractController
 
 
 
-        return $this->render('default/success.html.twig', []);
+        return $this->render('default/success.html.twig', [
+            'slider' => $slider
+        ]);
     }
 
     /**
@@ -105,9 +109,10 @@ class DefaultController extends AbstractController
                     'unit_amount' => $postData->price,
                 ],
                 'quantity' => 1,
+
             ]],
             'mode' => 'payment',
-            'success_url' => "http://127.0.0.1:8080/vip/success?session_id={CHECKOUT_SESSION_ID}",
+            'success_url' => "http://127.0.0.1:8080/vip/success?session_id={CHECKOUT_SESSION_ID}&qty=".$postData->qty,
             'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 

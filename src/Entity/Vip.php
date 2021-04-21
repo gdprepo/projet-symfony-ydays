@@ -37,6 +37,11 @@ class Vip
      */
     private $Price;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $duree;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Vip
     public function setPrice(int $Price): self
     {
         $this->Price = $Price;
+
+        return $this;
+    }
+
+    public function getDuree(): ?int
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?int $duree): self
+    {
+        $this->duree = $duree;
 
         return $this;
     }
