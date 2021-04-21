@@ -41,7 +41,11 @@ class HomeController extends AbstractController
         $pronosRepo = $this->getDoctrine()->getRepository(Prono::class);
 
         $sliderRepo = $this->getDoctrine()->getRepository(Slider::class);
-        $slider = $sliderRepo->find(1);
+        
+        if ($sliderRepo) {
+            $slider = $sliderRepo->find(1);
+
+        }
 
         $vipRepo = $this->getDoctrine()->getRepository(Vip::class);
 
