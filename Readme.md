@@ -6,10 +6,10 @@ L'admin peut : <br/>
         - modifier ajouter ou supprimer ses Prono<br>
         - changer le logo et l'image de la page principale
 
-> docker-compose up -d pour lancer le serveur
+>` docker-compose up -d` pour lancer le serveur
 > puis rendez-vous à l'adresse suivante : http://localhost:8080/
 
-> docker-compose down pour arreter le serveur
+> `docker-compose stop` pour arreter le serveur
 
 
 
